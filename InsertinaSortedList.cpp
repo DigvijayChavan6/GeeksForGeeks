@@ -9,7 +9,7 @@
 // 19 25 36 47 58 69 80
 // Explanation:
 // After inserting 19 the sorted linked list will look like the one in the output.
-// Example 2:
+// Example 2
 
 // Input:
 // LinkedList: 50->100
