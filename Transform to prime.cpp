@@ -28,8 +28,7 @@
 // 1 ≤ N ≤ 105
 // 1 ≤ sum of all elements ≤ 106
 
-class Solution
-{
+class Solution{
     public:
     bool isPrime(long long int n){
         int srt=sqrt(n);
