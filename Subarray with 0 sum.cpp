@@ -35,13 +35,23 @@ class Solution{
     bool subArrayExists(int arr[], int n)
     {
         //Your code here
+        // for(int i=0;i<n;i++){
+        //     long long int sum=0;
+        //     for(int j=i;j<n;j++){
+        //         sum+=arr[j];
+        //         if(sum==0)return true;
+        //     }
+        // }
+        // return false;
+
+        long long int sum=0;
+        unordered_map<int,int> mp;
         for(int i=0;i<n;i++){
-            long long int sum=0;
-            for(int j=i;j<n;j++){
-                sum+=arr[j];
-                if(sum==0)return true;
-            }
+            sum+=arr[i];
+            if(mp[sum]>0 || sum==0)return true;
+            mp[sum]++;
         }
         return false;
+
     }
 };
