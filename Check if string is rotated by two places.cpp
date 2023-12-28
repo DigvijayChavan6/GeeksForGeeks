@@ -28,6 +28,32 @@
 // Constraints:
 // 1 ≤ length of a, b ≤ 105
 
+// class Solution{
+//     public:
+//     //Function to check if a string can be obtained by rotating
+//     //another string by exactly 2 places.
+//     bool isRotated(string str1, string str2){
+//         int size=str1.size();
+//         if(size!=str2.size())return false;
+//         int t=0;
+//         for(int i=0;i<size;i++){
+//             int index=(i+2)%size;
+//             if(str1[i]!=str2[index]){
+//                 t=1;
+//                 break;
+//             }
+//         }
+//         if(t==0)return true;
+//         for(int i=0;i<size;i++){
+//             int index=(size+i-2)%size;
+//             if(str1[i]!=str2[index]){
+//                 return false;
+//             }
+//         }
+//         return true;
+//     }
+// };
+
 class Solution{
     public:
     //Function to check if a string can be obtained by rotating
@@ -35,21 +61,15 @@ class Solution{
     bool isRotated(string str1, string str2){
         int size=str1.size();
         if(size!=str2.size())return false;
-        int t=0;
-        for(int i=0;i<size;i++){
-            int index=(i+2)%size;
-            if(str1[i]!=str2[index]){
-                t=1;
-                break;
+        if(size<2){
+            if(size==1){
+             if(str1[0]!=str2[0])return false;
             }
+            return true;
         }
-        if(t==0)return true;
-        for(int i=0;i<size;i++){
-            int index=(size+i-2)%size;
-            if(str1[i]!=str2[index]){
-                return false;
-            }
-        }
-        return true;
+        string a="",b="";
+        a=str1.substr(2,size-2)+str1.substr(0,2);
+        b=str1.substr(size-2,2)+str1.substr(0,size-2);
+        return a==str2 || b==str2;
     }
 };
