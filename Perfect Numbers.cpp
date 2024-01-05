@@ -31,7 +31,7 @@
 // Constraints:
 // 1 <= N <= 1012
 
-
+//this the answer
 class Solution {
   public:
     int isPerfectNumber(long long N) {
