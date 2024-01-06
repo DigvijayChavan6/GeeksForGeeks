@@ -34,7 +34,7 @@ public:
 	    unordered_map<char,int> mp;
 	    for(char c : S){
 	        if(mp[c]==0){
-	            mp[c]++;
+	  git p          mp[c]++;
 	            str+=c;
 	        }
 	    }
