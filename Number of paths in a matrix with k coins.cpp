@@ -53,3 +53,27 @@ public:
     }
     
 };
+
+
+// OPTIMISED ANSWER
+
+class Solution {
+public:
+
+    long long getCount(int i, int j,int k, vector<vector<int>> &arr, vector<vector<vector<int>>> &dp){
+        if(i<0 || j<0)return 0;
+        k=k-arr[i][j];
+        if(k<0)return 0;
+        if(i==0 && j==0 && k==0)return 1;
+        if(dp[i][j][k]!=-1)return dp[i][j][k];
+        long long r=getCount(i-1,j,k,arr,dp);
+        long long c=getCount(i,j-1,k,arr,dp);
+        return dp[i][j][k]=r+c;
+    }
+    
+    long long numberOfPath(int n, int k, vector<vector<int>> &arr){
+        vector<vector<vector<int>>> dp(n,vector<vector<int>> (n,vector<int> (k,-1)));
+        return getCount(n-1,n-1,k,arr,dp);
+    }
+    
+};
