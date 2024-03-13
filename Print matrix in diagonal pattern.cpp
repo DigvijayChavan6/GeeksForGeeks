@@ -43,32 +43,43 @@
 // 1 <= n <= 100
 // -100 <= elements of matrix <= 100
 
-class Solution{
-  public:
-    vector<int> matrixDiagonally(vector<vector<int>>&mat){
-        int i=0, j=0, flag=1, n=mat.size();
+class Solution
+{
+public:
+    vector<int> matrixDiagonally(vector<vector<int>> &mat)
+    {
+        int i = 0, j = 0, flag = 1, n = mat.size();
         vector<int> vec;
-        while(i < n && j < n){
+        while (i < n && j < n)
+        {
             vec.push_back(mat[i][j]);
-            if(flag == 1){
-                if(i-1 >=0 && j+1 < n){
-                    i--; j++;
+            if (flag == 1)
+            {
+                if (i - 1 >= 0 && j + 1 < n)
+                {
+                    i--;
+                    j++;
                 }
-                else{
-                    flag=0;
-                    j+1 < n ? j++ : i++;
+                else
+                {
+                    flag = 0;
+                    j + 1 < n ? j++ : i++;
                 }
             }
-            else{
-                if(j-1 >= 0 && i+1 < n){
-                    j--; i++;
+            else
+            {
+                if (j - 1 >= 0 && i + 1 < n)
+                {
+                    j--;
+                    i++;
                 }
-                else{
-                    flag=1;
-                    i+1 < n ? i++ : j++;
+                else
+                {
+                    flag = 1;
+                    i + 1 < n ? i++ : j++;
                 }
             }
         }
-        return vec;  
+        return vec;
     }
 };
