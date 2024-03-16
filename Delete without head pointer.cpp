@@ -45,7 +45,8 @@ struct Node {
   struct Node *next;
   Node(int x) {
     data = x;
-    next = NULL;
+    next = NULL; 
+    
   }
 }*head;
 */
