@@ -61,3 +61,36 @@ public:
         return --cnt;
     }
 };
+
+class Solution
+{
+public:
+    int unvisitedLeaves(int N, int leaves, int frogs[])
+    {
+        int cnt = 0;
+        // sort(frogs, frogs+N);
+        vector<bool> jumps(leaves + 1, false);
+        for (int i = 0; i < N; i++)
+        {
+            int t = frogs[i];
+            if (t == 1)
+                return 0;
+            if (t <= leaves && jumps[t] == false)
+            {
+                while (t <= leaves)
+                {
+                    jumps[t] = true;
+                    t += frogs[i];
+                }
+            }
+        }
+        for (bool v : jumps)
+        {
+            if (!v)
+            {
+                cnt++;
+            }
+        }
+        return --cnt;
+    }
+};
