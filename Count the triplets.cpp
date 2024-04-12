@@ -53,3 +53,27 @@ public:
 	    return cnt;
 	}
 };
+
+//OPTIMISED
+
+class Solution{
+public:	
+	
+	int countTriplet(int arr[], int n){
+	    sort(arr, arr+n);
+	    int cnt = 0;
+	    for(int i=n-1;i>=0;i--){
+	        int l=0, h=i-1;
+	        while(l<h){
+	            if(arr[i] == arr[l]+arr[h]){
+	                cnt ++;
+	                l++;
+	                h--;
+	            }
+	            else if(arr[i] > arr[l]+arr[h])l++;
+	            else h--;
+	        }
+	    }
+	    return cnt;
+	}
+};
