@@ -29,17 +29,33 @@ public:
 };
 */
 
+void insert(stack<int> &s, int x){
+    if(s.empty() or x > s.top()){
+        s.push(x);
+        return ;
+    }
+    int t=s.top();
+    s.pop();
+    insert(s, x);
+    s.push(t);
+}
 /* The below method sorts the stack s 
 you are required to complete the below method */
 void SortedStack :: sort(){
     //Your code here
-    vector<int> vec;
-    while(!s.empty()){
-        vec.push_back(s.top());
+    if(!s.empty()){
+        int x=s.top();
         s.pop();
+        sort();
+        insert(s, x);
     }
-    std::sort(vec.begin(), vec.end());
-    for(int v : vec){
-        s.push(v);
-    }
+    // vector<int> vec;
+    // while(!s.empty()){
+    //     vec.push_back(s.top());
+    //     s.pop();
+    // }
+    // std::sort(vec.begin(), vec.end());
+    // for(int v : vec){
+    //     s.push(v);
+    // }
 }
