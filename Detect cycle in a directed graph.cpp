@@ -61,3 +61,34 @@ class Solution {
         return false;
     }
 };
+
+class Solution {
+  public:
+    // Function to detect cycle in a directed graph.
+    bool isCyclic(int V, vector<int> adj[]) {
+        // Kahn's algorithm
+        vector<int> inorder(V, 0);
+        for(int i=0;i<V;i++){
+            for(int v : adj[i]){
+                inorder[v]++;
+            }
+        }
+        queue<int> q;
+        for(int i=0;i<V;i++){
+            if(inorder[i] == 0)q.push(i);
+        }
+        int count=0;
+        while(!q.empty()){
+            int fnt=q.front();
+            q.pop();
+            count++;
+            for(int v : adj[fnt]){
+                inorder[v]--;
+                if(inorder[v] == 0){
+                    q.push(v);
+                }
+            }
+        }
+        return count != V;
+    }
+};
