@@ -85,3 +85,21 @@ class Solution{
         return result;
     }
 };
+
+
+class Solution{
+    bool match(Node *T, Node *S){
+        if(!T && !S)return true;
+        if(!T && S || T && !S)return false;
+        if(T->data != S->data)return false;
+        return match(T->left, S->left) && match(T->right, S->right);
+    }
+  public:
+    //Function to check if S is a subtree of tree T.
+    bool isSubTree(Node* T, Node* S) {
+        // Your code here
+        if(!T)return false;
+        if(T->data == S->data && match(T, S))return true;
+        return isSubTree(T->left, S) || isSubTree(T->right, S);
+    }
+};
