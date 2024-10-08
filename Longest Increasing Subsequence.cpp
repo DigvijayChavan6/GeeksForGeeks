@@ -44,3 +44,22 @@ class Solution{
        return mx;
     }
 };
+
+vector<int> list;
+       for(int i=0; i<n; ++i){
+            int low = 0, high = list.size()-1;
+            while(low <= high){
+                int mid = low + (high-low)/2;
+                if(list[mid] >= a[i]){
+                    high = mid-1;
+                }else{
+                    low = mid+1;
+                }
+            }
+            if(low < list.size()){
+                list[low] = a[i];
+            }else{
+                list.push_back(a[i]);
+            }
+       }
+       return list.size();
