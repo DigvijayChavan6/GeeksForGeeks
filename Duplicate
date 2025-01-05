@@ -1,0 +1,147 @@
+//Driver Code Starts
+
+// Initial function template for C++
+
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+
+
+//Driver Code Ends
+
+
+
+//User function template for C++
+
+
+
+class Solution{
+
+
+
+public:	
+
+	/* if x is present in arr[] then returns the count
+
+		of occurrences of x, otherwise returns 0. */
+
+	int countFreq(vector<int> &arr, int x) {
+
+	    int n=arr.size();
+
+	    int l=0,h=n-1,m;
+
+	    while(l<=h){
+
+	        m=(l+h)/2;
+
+	        if(arr[m]==x)break;
+
+	        else if(arr[m]<x)l=m+1;
+
+	        else h=m-1;
+
+	    }
+
+	    int cnt=0,p=m--;
+
+	    while(arr[p]==x){
+
+	        p++;
+
+	        cnt++;
+
+	    }
+
+	    while(arr[m]==x){
+
+	        m--;
+
+	        cnt++;
+
+	    }
+
+	    return cnt;
+
+	}
+
+};
+
+
+
+
+
+//Driver Code Starts
+
+
+
+
+
+int main() {
+
+    int test_case;
+
+    cin >> test_case;
+
+    cin.ignore();
+
+    while (test_case--) {
+
+
+
+        int d;
+
+        vector<int> arr, brr, crr;
+
+        string input;
+
+        getline(cin, input);
+
+        stringstream ss(input);
+
+        int number;
+
+        while (ss >> number) {
+
+            arr.push_back(number);
+
+        }
+
+        getline(cin, input);
+
+        ss.clear();
+
+        ss.str(input);
+
+        while (ss >> number) {
+
+            crr.push_back(number);
+
+        }
+
+        d = crr[0];
+
+        int n = arr.size();
+
+        Solution ob;
+
+        int ans = ob.countFreq(arr, d);
+
+        cout << ans << endl;
+
+
+
+        cout << "~"
+
+             << "\n";
+
+    }
+
+    return 0;
+
+}
+
+//Driver Code Ends
