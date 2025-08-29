@@ -1,0 +1,43 @@
+class Solution {
+  public:
+    string smallestWindow (string s, string p) {
+        if (p.size() > s.size()) return "";
+
+        // Frequency of characters required
+        vector<int> need(256, 0);
+        for (char c : p) need[c]++;
+
+        int required = p.size();  // total characters (with duplicates)
+        int formed = 0;
+
+        vector<int> have(256, 0);
+        int i = 0, minLen = s.size() + 1, startIdx = -1;
+
+        for (int j = 0; j < s.size(); j++) {
+            char c = s[j];
+            have[c]++;
+
+            if (need[c] > 0 && have[c] <= need[c]) {
+                formed++;
+            }
+
+            // When we matched all required characters
+            while (formed == required) {
+                if (j - i + 1 < minLen) {
+                    minLen = j - i + 1;
+                    startIdx = i;
+                }
+
+                char leftChar = s[i];
+                have[leftChar]--;
+                if (need[leftChar] > 0 && have[leftChar] < need[leftChar]) {
+                    formed--;
+                }
+                i++;
+            }
+        }
+
+        if (startIdx == -1) return "";
+        return s.substr(startIdx, minLen);
+    }
+};
