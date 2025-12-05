@@ -66,3 +66,45 @@ class Solution{
 	    return topo;
 	}
 };
+
+
+class Solution {
+    void dfs(int node, int vis[], stack<int> &st, vector<vector<int>> graph){
+        vis[node] = 1;
+        
+        for(int next : graph[node]){
+            if(vis[next] == 0){
+                dfs(next, vis, st, graph);
+            }
+        }
+        
+        st.push(node);
+    }
+  public:
+    vector<int> topoSort(int V, vector<vector<int>>& edges) {
+        // code here
+        vector<vector<int>> graph(V);
+        
+        for(auto edge : edges){
+            graph[edge[0]].push_back(edge[1]);
+        }
+        
+        stack<int> st;
+        vector<int> answer;
+        
+        int vis[V] = {0};
+        
+        for(int i = 0; i < V; i++){
+            if(vis[i] == 0){
+                dfs(i, vis, st, graph);
+            }
+        }
+        
+        while(!st.empty()){
+            answer.push_back(st.top());
+            st.pop();
+        }
+        
+        return answer;
+    }
+};
