@@ -38,3 +38,41 @@ class Solution {
         return false;
     }
 };
+
+
+class Solution {
+  public:
+    bool isCyclic(int V, vector<vector<int>> &edges) {
+        // code here
+        vector<vector<int>> graph(V);
+        vector<int> indegree(V, 0);
+        queue<int> q;
+        
+        for(auto edge : edges){
+            graph[edge[0]].push_back(edge[1]);
+            indegree[edge[1]]++;
+        }
+        
+        for(int i = 0; i < V; i++){
+            if(indegree[i] == 0){
+                q.push(i);
+            }
+        }
+        
+        int cnt = 0;
+        
+        while(!q.empty()){
+            int node = q.front();
+            q.pop();
+            cnt++;
+            for(int next : graph[node]){
+                indegree[next]--;
+                if(indegree[next] == 0){
+                    q.push(next);
+                }
+            }
+        }
+        
+        return cnt != V;
+    }
+};
