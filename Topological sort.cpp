@@ -108,3 +108,59 @@ class Solution {
         return answer;
     }
 };
+
+
+
+class Solution {
+    // void dfs(int node, int vis[], stack<int> &st, vector<vector<int>> &graph){
+    //     vis[node] = 1;
+        
+    //     for(int next : graph[node]){
+    //         if(vis[next] == 0){
+    //             dfs(next, vis, st, graph);
+    //         }
+    //     }
+        
+    //     st.push(node);
+    // }
+    void bfs(queue<int> &q, vector<int> &answer, int indegree[], vector<vector<int>> &graph){
+        int node = q.front();
+        q.pop();
+        answer.push_back(node);
+        
+        for(int next : graph[node]){
+            indegree[next]--;
+            if(indegree[next] == 0){
+                q.push(next);
+            }
+        }
+    }
+    
+  public:
+    vector<int> topoSort(int V, vector<vector<int>>& edges) {
+        // code here
+        vector<vector<int>> graph(V);
+        int indegree[V] = {0};
+        
+        for(auto edge : edges){
+            graph[edge[0]].push_back(edge[1]);
+            indegree[edge[1]]++;
+        }
+        
+        vector<int> answer;
+        queue<int> q;
+        
+        for(int i = 0; i < V; i++){
+            if(indegree[i] == 0){
+                q.push(i);
+            }
+        }
+        
+    
+        while(!q.empty()){
+            bfs(q, answer, indegree, graph);
+        }
+        
+        return answer;
+    }
+};
