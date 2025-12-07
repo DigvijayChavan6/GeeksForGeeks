@@ -1,10 +1,10 @@
 class Solution {
-    void dfs(vector<int> &temp, int visited[], vector<vector<int>> graph, int V, int node){
+    void dfs(vector<int> &temp, int visited[], vector<vector<int>> &graph, int node){
         visited[node] = 1;
         temp.push_back(node);
         for(int next : graph[node]){
             if(visited[next] == 0){
-                dfs(temp, visited, graph, V, next);
+                dfs(temp, visited, graph, next);
             }
         }
     }
@@ -25,7 +25,7 @@ class Solution {
         for(int i = 0; i < V; i++){
             if(visited[i] == 0){
                 vector<int> temp;
-                dfs(temp, visited, graph, V, i);
+                dfs(temp, visited, graph, i);
                 answer.push_back(temp);
             }
         }
