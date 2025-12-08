@@ -50,3 +50,47 @@ class Solution {
         return safeNodes;
     }
 };
+
+
+
+class Solution {
+    
+    
+  public:
+    vector<int> safeNodes(int V, vector<vector<int>>& edges) {
+        // Code here
+        vector<vector<int>> graph(V);
+        
+        int indegree[V] = {0};
+        
+        for(auto edge : edges){
+            graph[edge[1]].push_back(edge[0]);
+            indegree[edge[0]]++;
+        }
+        
+        queue<int> q;
+        for(int i = 0; i < V; i++){
+            if(indegree[i] == 0){
+                q.push(i);
+            }
+        }
+        
+        vector<int> answer;
+        while(!q.empty()){
+            int node = q.front();
+            answer.push_back(node);
+            q.pop();
+            
+            for(int next : graph[node]){
+                indegree[next]--;
+                if(indegree[next] == 0){
+                    q.push(next);
+                }
+            }
+        }
+        
+        sort(answer.begin(), answer.end());
+        
+        return answer;
+    }
+};
