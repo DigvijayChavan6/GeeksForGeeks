@@ -33,7 +33,11 @@ class Solution {
         vector<int> ts(V, 0);
         vector<int> lw(V, 0);
         
-        dfs(0, -1, ts, lw, mark, adj, vis);
+        for(int i = 0; i < V; i++){
+            if(!vis[i]){
+                dfs(i, -1, ts, lw, mark, adj, vis);
+            }
+        }
         
         for(int i = 0; i < V; i++){
             if(mark[i]){
