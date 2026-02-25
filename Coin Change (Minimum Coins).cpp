@@ -32,3 +32,36 @@ class Solution {
         return cnt;
     }
 };
+
+
+
+  public:
+    int minCoins(vector<int>& coins, int sum) {
+        // code here.
+        int n = coins.size();
+        
+        vector<vector<int>> dp(n, vector<int>(sum+1, 0));
+        
+        for(int s = 0; s <= sum; s++){
+            if(s%coins[0] == 0)dp[0][s] = s/coins[0];
+            else dp[0][s] = 1e9;
+        }
+        
+        for(int i = 1; i < n; i++){
+            for(int s = 0; s <= sum; s++){
+                int take = 1e9;
+                int notTake = dp[i-1][s];
+                if(coins[i] <= s){
+                    take = 1 + dp[i][s-coins[i]];
+                }
+        
+                dp[i][s] = min(take, notTake);
+            }
+        }
+        
+        int cnt = dp[n-1][sum];
+        if(cnt == 1e9)return -1;
+    
+        return cnt;
+    }
+};
