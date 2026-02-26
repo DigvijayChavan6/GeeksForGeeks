@@ -25,3 +25,30 @@ class Solution {
         return getCount(n-1, sum, coins, dp);
     }
 };
+
+
+
+  public:
+    int count(vector<int>& coins, int sum) {
+        // code here.
+        int n = coins.size();
+        vector<vector<int>> dp(n, vector<int>(sum+1, 0));
+        
+        for(int s = 0; s <= sum; s++){
+            if(s%coins[0] == 0)dp[0][s] = 1;
+            else dp[0][s] = 0;
+        }
+        
+        for(int i = 1; i < n; i++){
+            for(int s = 0; s <= sum; s++){
+                int take = 0;
+                int notTake = dp[i-1][s];
+                if(coins[i] <= s){
+                    take = dp[i][s-coins[i]];
+                }
+                dp[i][s] = take + notTake;
+            }
+        }
+        return dp[n-1][sum];
+    }
+};
